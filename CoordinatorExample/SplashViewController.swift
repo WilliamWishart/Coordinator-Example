@@ -34,19 +34,17 @@ public class SplashViewController: UIViewController {
         newOrderButton.addTarget(self, action: #selector(didTapNewOrder), for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(newOrderButton)
-        
         newOrderButton.translatesAutoresizingMaskIntoConstraints = false
         newOrderButton.widthAnchor.constraint(equalToConstant: 260).isActive = true
         newOrderButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        newOrderButton.bottomAnchor.constraint(equalTo: bottomLayoutGuide.topAnchor, constant: -20).isActive = true
+        newOrderButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         newOrderButton.heightAnchor.constraint(equalToConstant: 44).isActive = true
         
         self.titleLabel.numberOfLines = 0
         self.view.addSubview(self.titleLabel)
-        
         self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
         self.titleLabel.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        self.titleLabel.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor, constant: 20).isActive = true
+        self.titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
         
         self.updateView()
         
@@ -71,15 +69,15 @@ public class SplashViewController: UIViewController {
         paragraphStyle.lineSpacing = 20
         
         let fontAttributes = [
-            NSForegroundColorAttributeName: UIColor.black,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: UIFont.systemFont(ofSize: 40)
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.systemFont(ofSize: 40)
         ]
         
         let largeFontAttributes = [
-            NSForegroundColorAttributeName: UIColor.black,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            NSFontAttributeName: UIFont.boldSystemFont(ofSize: 70)
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.paragraphStyle: paragraphStyle,
+            NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 70)
         ]
         
         let string = NSMutableAttributedString()
