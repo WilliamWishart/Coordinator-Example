@@ -15,15 +15,14 @@ class AppCoordinator: RootViewCoordinator {
     
     // MARK: - Properties
     
+    /// Window to manage
+    let window: UIWindow
     let services: Services
     var childCoordinators: [Coordinator] = []
     
     var rootViewController: UIViewController {
         return self.navigationController
     }
-    
-    /// Window to manage
-    let window: UIWindow
     
     private lazy var navigationController: UINavigationController = {
         let navigationController = UINavigationController()
@@ -36,7 +35,6 @@ class AppCoordinator: RootViewCoordinator {
     public init(window: UIWindow, services: Services) {
         self.services = services
         self.window = window
-        
         self.window.rootViewController = self.rootViewController
         self.window.makeKeyAndVisible()
     }
@@ -62,14 +60,12 @@ class AppCoordinator: RootViewCoordinator {
 extension AppCoordinator: SplashViewControllerDelegate {
     
     func splashViewControllerDidTapNewOrder(splashViewController: SplashViewController) {
-        
         let newOrderCoordinator = NewOrderCoordinator(with: self.services)
         newOrderCoordinator.delegate = self
         newOrderCoordinator.start()
         self.addChildCoordinator(newOrderCoordinator)
         self.rootViewController.present(newOrderCoordinator.rootViewController, animated: true, completion: nil)
     }
-    
 }
 
 // MARK: - NewOrderCoordinatorDelegate
@@ -77,23 +73,22 @@ extension AppCoordinator: SplashViewControllerDelegate {
 extension AppCoordinator: NewOrderCoordinatorDelegate {
     
     func newOrderCoordinatorDidRequestCancel(newOrderCoordinator: NewOrderCoordinator) {
-        
         newOrderCoordinator.rootViewController.dismiss(animated: true)
         self.removeChildCoordinator(newOrderCoordinator)
-        
     }
     
     func newOrderCoordinator(newOrderCoordinator: NewOrderCoordinator, didAddOrder orderPayload: NewOrderCoordinatorPayload) {
         
-        guard let drinkType = orderPayload.selectedDrinkType,
-            let snackType = orderPayload.selectedSnackType else {
-                return
+        guard
+            let drinkType = orderPayload.selectedDrinkType,
+            let snackType = orderPayload.selectedSnackType,
+            let tableNumber = orderPayload.selectedTableNumber
+        else {
+            return
         }
         
-        let order = Order(drinkType: drinkType, snackType: snackType)
-        
+        let order = Order(drinkType: drinkType, snackType: snackType, tableNumber: tableNumber)
         self.services.dataService.orders.append(order)
-        
         newOrderCoordinator.rootViewController.dismiss(animated: true)
         self.removeChildCoordinator(newOrderCoordinator)
     }

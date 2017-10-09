@@ -16,12 +16,12 @@ protocol NewOrderCoordinatorDelegate: class {
     
     /// The user completed the order flow with the payload
     func newOrderCoordinator(newOrderCoordinator: NewOrderCoordinator, didAddOrder orderPayload: NewOrderCoordinatorPayload)
-    
 }
 
 class NewOrderCoordinatorPayload {
     var selectedDrinkType: String?
     var selectedSnackType: String?
+    var selectedTableNumber: String?
 }
 
 class NewOrderCoordinator: RootViewCoordinator {
@@ -63,7 +63,12 @@ class NewOrderCoordinator: RootViewCoordinator {
         snackTypeViewController.delegate = self
         self.navigationController.pushViewController(snackTypeViewController, animated: true)
     }
-    
+
+    func showTableNumberViewController() {
+        let tableNumberViewController = TableNumberViewController(services: self.services)
+        tableNumberViewController.delegate = self
+        self.navigationController.pushViewController(tableNumberViewController, animated: true)
+    }
 }
 
 // MARK: - DrinkTypeControllerDelegate
@@ -75,23 +80,36 @@ extension NewOrderCoordinator: DrinkTypeControllerDelegate {
     }
     
     func drinkTypeViewController(_ drinkTypeViewController: DrinkTypeViewController, didSelectDrinkType drinkType: String) {
-        
         self.orderPayload = NewOrderCoordinatorPayload()
         self.orderPayload?.selectedDrinkType = drinkType
-        
         self.showSnackTypeViewController()
     }
-    
 }
 
 // MARK: - SnackTypeViewControllerDelegate
 
 extension NewOrderCoordinator: SnackTypeViewControllerDelegate {
+
+    func snackTypeViewControllerDidTapClose(_ snackTypeViewController: SnackTypeViewController) {
+        self.delegate?.newOrderCoordinatorDidRequestCancel(newOrderCoordinator: self)
+    }
     
     func snackTypeViewController(_ snackTypeViewController: SnackTypeViewController, didSelectSnackType snackType: String) {
-        
         self.orderPayload?.selectedSnackType = snackType
-        
+        self.showTableNumberViewController()
+    }
+}
+
+// MARK: - TableNumberViewControllerDelegate
+
+extension NewOrderCoordinator: TableNumberViewControllerDelegate {
+    
+    func tableNumberViewControllerDidTapClose(_ tableNumberViewController: TableNumberViewController) {
+        self.delegate?.newOrderCoordinatorDidRequestCancel(newOrderCoordinator: self)
+    }
+    
+    func tableNumberViewController(_ tableNumberViewController: TableNumberViewController, didSelectTableNumber tableNumber: String) {
+        self.orderPayload?.selectedTableNumber = tableNumber
         if let newOrderPayload = self.orderPayload {
             self.delegate?.newOrderCoordinator(newOrderCoordinator: self, didAddOrder: newOrderPayload)
         }

@@ -44,9 +44,7 @@ public class SnackTypeViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let snackType = self.snackTypes[indexPath.row]
-        
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
         cell.textLabel?.text = snackType
         return cell

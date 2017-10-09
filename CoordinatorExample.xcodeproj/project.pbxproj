@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D6B5F641F818A5500B996F9 /* TableNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6B5F631F818A5500B996F9 /* TableNumberViewController.swift */; };
 		BEEE17C61DD5CB2A004D6FCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEEE17C51DD5CB29004D6FCE /* AppDelegate.swift */; };
 		BEEE17CD1DD5CB2A004D6FCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEEE17CC1DD5CB2A004D6FCE /* Assets.xcassets */; };
 		BEEE17D01DD5CB2A004D6FCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEEE17CE1DD5CB2A004D6FCE /* LaunchScreen.storyboard */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3D6B5F631F818A5500B996F9 /* TableNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableNumberViewController.swift; sourceTree = "<group>"; };
 		BEEE17C21DD5CB29004D6FCE /* CoordinatorExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEEE17C51DD5CB29004D6FCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BEEE17CC1DD5CB2A004D6FCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				BEEE17DD1DD5CB50004D6FCE /* DrinkTypeViewController.swift */,
 				BEEE17DE1DD5CB50004D6FCE /* SnackTypeViewController.swift */,
 				BEEE17DF1DD5CB50004D6FCE /* SplashViewController.swift */,
+				3D6B5F631F818A5500B996F9 /* TableNumberViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -195,6 +198,7 @@
 				BEEE17E81DD5CC76004D6FCE /* AppCoordinator.swift in Sources */,
 				BEEE17DA1DD5CB4B004D6FCE /* Coordinator.swift in Sources */,
 				BEEE17DB1DD5CB4B004D6FCE /* RootViewCoordinator.swift in Sources */,
+				3D6B5F641F818A5500B996F9 /* TableNumberViewController.swift in Sources */,
 				BEEE17E21DD5CB51004D6FCE /* SplashViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

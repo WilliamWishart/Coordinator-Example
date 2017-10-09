@@ -12,10 +12,12 @@ public struct Services {
 public struct Order {
     public let drinkType: String
     public let snackType: String
+    public let tableNumber: String
     
-    public init(drinkType: String, snackType: String) {
+    public init(drinkType: String, snackType: String, tableNumber: String) {
         self.drinkType = drinkType
         self.snackType = snackType
+        self.tableNumber = tableNumber
     }
     
 }

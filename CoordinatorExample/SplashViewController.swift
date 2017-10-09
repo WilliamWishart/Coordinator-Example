@@ -30,7 +30,7 @@ public class SplashViewController: UIViewController {
         
         let newOrderButton = UIButton(type: .system)
         newOrderButton.setTitle("New order", for: .normal)
-        newOrderButton.backgroundColor = .red
+        newOrderButton.backgroundColor = .green
         newOrderButton.addTarget(self, action: #selector(didTapNewOrder), for: UIControlEvents.touchUpInside)
         
         self.view.addSubview(newOrderButton)
