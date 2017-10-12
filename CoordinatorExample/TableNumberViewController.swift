@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 public protocol TableNumberViewControllerDelegate: class {
-    func tableNumberViewControllerDidTapClose(_ tableNumberViewController: TableNumberViewController)
     func tableNumberViewController(_ tableNumberViewController: TableNumberViewController, didSelectTableNumber tableNumber: String)
 }
 
@@ -19,33 +18,22 @@ public class TableNumberViewController: UITableViewController {
     
     public weak var delegate: TableNumberViewControllerDelegate?
     
-    lazy var closeBarButtonItem: UIBarButtonItem = {
-        let closeBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(self.closeButtonTapped))
-        return closeBarButtonItem
-    }()
-    
     private let tableNumbers = [
         "A1",
         "A2",
-        "B1",
-        "B2"
+        "A3",
+        "B1"
     ]
     
     public init(services: Services) {
         self.services = services
         super.init(nibName: nil, bundle: nil)
-        
-        self.title = "Select Table"
-        self.navigationItem.leftBarButtonItem = self.closeBarButtonItem
+        self.title = "Table"
     }
     
     @available(*, unavailable)
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    @objc private func closeButtonTapped(sender: UIBarButtonItem) {
-        self.delegate?.tableNumberViewControllerDidTapClose(self)
     }
     
     public override func viewDidLoad() {
@@ -62,11 +50,9 @@ public class TableNumberViewController: UITableViewController {
     }
     
     public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let drinkType = self.tableNumbers[indexPath.row]
-        
+        let tableNumber = self.tableNumbers[indexPath.row]
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: nil)
-        cell.textLabel?.text = drinkType
+        cell.textLabel?.text = tableNumber
         return cell
     }
     
@@ -77,6 +63,5 @@ public class TableNumberViewController: UITableViewController {
     public override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
 }
-
-

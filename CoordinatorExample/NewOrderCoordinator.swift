@@ -53,6 +53,8 @@ class NewOrderCoordinator: RootViewCoordinator {
     // MARK: - Functions
     
     func start() {
+        self.orderPayload = NewOrderCoordinatorPayload()
+
         let drinkTypeViewController = DrinkTypeViewController(services: self.services)
         drinkTypeViewController.delegate = self
         self.navigationController.viewControllers = [drinkTypeViewController]
@@ -80,7 +82,6 @@ extension NewOrderCoordinator: DrinkTypeControllerDelegate {
     }
     
     func drinkTypeViewController(_ drinkTypeViewController: DrinkTypeViewController, didSelectDrinkType drinkType: String) {
-        self.orderPayload = NewOrderCoordinatorPayload()
         self.orderPayload?.selectedDrinkType = drinkType
         self.showSnackTypeViewController()
     }

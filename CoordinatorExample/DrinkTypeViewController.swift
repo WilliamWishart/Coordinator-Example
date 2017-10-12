@@ -28,7 +28,7 @@ public class DrinkTypeViewController: UITableViewController {
         self.services = services
         super.init(nibName: nil, bundle: nil)
         
-        self.title = "Select Drink"
+        self.title = "Drink"
         self.navigationItem.leftBarButtonItem = self.closeBarButtonItem
     }
     

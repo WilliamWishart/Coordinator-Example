@@ -21,8 +21,7 @@ public class SnackTypeViewController: UITableViewController {
     public init(services: Services) {
         self.services = services
         super.init(nibName: nil, bundle: nil)
-        
-        self.title = "Select Snack"
+        self.title = "Snack"
     }
     
     @available(*, unavailable)
